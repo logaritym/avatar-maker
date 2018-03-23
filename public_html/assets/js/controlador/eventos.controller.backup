@@ -1,15 +1,9 @@
 var app = app; // HACK
-// CONTROLES DE INICIO DEL JUEGO (no more continue button)
+// CONTROLES DE INICIO DEL JUEGO
 var botonDeComenzar = $('#start-button');
-// Girl button
-var createGirl = $('#chica');
-// Boy button
-var createBoy = $('#chico');
-
+var botonSiguienteDelModal = $('#boton-jugar');
 var modal = $('#modal');
 
-
-// not sure what app is. makes app's PlayerName whatever the input was (missing). hides the modal. initiates?? app.
 iniciarJuego = function () {
     app.estado.playerName = $('#input-nombre').val();
     modal.modal('hide');
@@ -20,12 +14,8 @@ abrirModalDeInicio = function () {
     modal.modal('show');
 };
 
-//The continue button, not anymore.
 botonDeComenzar.on('click', abrirModalDeInicio);
-//if you click the girl button, starts iniciarJuego
-createGirl.on('click', iniciarJuego);
-//if you click the boy button, starts iniciarJuego
-createBoy.on('click', iniciarJuego);
+botonSiguienteDelModal.on('click', iniciarJuego);
 
 // CONTROLES DE DRAG AND DROP
 allowDrop = function (ev) {
@@ -63,18 +53,14 @@ factoryImagen = function (data) {
 // CONTROLES DE CAMBIAR PIEL
 var botonesDeSeleccionDePiel = $('.piel');
 
-
-//change the skin
 cambiarPiel = function () {
 
     var self = this; // HACK
 
-// Returns the skin as a string.
     getNumeroDePielSeleccionadaByClassName = function () {
         return self.className.split("piel__suntan-")[1].split(" ")[0];
     };
 
-// CABEZA means HEAD. Returns the head + gender + skin string.
     factoryIdCabeza = function (genero, numeroPiel) {
         return "cabeza-" + genero + "-" + numeroPiel;
     };
@@ -83,7 +69,6 @@ cambiarPiel = function () {
         var cabezaDelAvatar = $('.avatar__cabeza');
         var srcCabezaEnAvatar = cabezaDelAvatar.attr('src');
         var pathDeImagenes = srcCabezaEnAvatar.split("cabeza-" + app.estado.genero + "-")[0];
-		//number skin - path, e.g. cabeza-chica-2.png
         var archivoImagenCabeza = "cabeza-" + app.estado.genero + "-" + numeroPiel + ".png";
         var newSrcCabeza = pathDeImagenes + archivoImagenCabeza;
         return newSrcCabeza;
