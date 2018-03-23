@@ -5,8 +5,9 @@ $(document).ready(function () {
     app.bootstrap();
 });
 
-__init = function () {
-    app.estado.genero = $('input[name=genero]:checked').val();
+__init = function (gender) {
+//    app.estado.genero = $('input[name=genero]:checked').val();
+	app.estado.genero = gender;
     app.pintarCabezaIncial();
     app.cargarPiezas(app.estado.genero);
     app.jugar();

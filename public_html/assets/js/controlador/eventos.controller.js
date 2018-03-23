@@ -10,22 +10,30 @@ var modal = $('#modal');
 
 
 // not sure what app is. makes app's PlayerName whatever the input was (missing). hides the modal. initiates?? app.
-iniciarJuego = function () {
+iniciarJuegoboy = function () {
     app.estado.playerName = $('#input-nombre').val();
     modal.modal('hide');
-    app.__init();
+    app.__init('chico');
+};
+
+iniciarJuegogirl = function () {
+    app.estado.playerName = $('#input-nombre').val();
+    modal.modal('hide');
+    app.__init('chica');
 };
 
 abrirModalDeInicio = function () {
     modal.modal('show');
 };
 
+
+
 //The continue button, not anymore.
 botonDeComenzar.on('click', abrirModalDeInicio);
 //if you click the girl button, starts iniciarJuego
-createGirl.on('click', iniciarJuego);
+createGirl.on('click', iniciarJuegogirl);
 //if you click the boy button, starts iniciarJuego
-createBoy.on('click', iniciarJuego);
+createBoy.on('click', iniciarJuegoboy);
 
 // CONTROLES DE DRAG AND DROP
 allowDrop = function (ev) {
